@@ -1328,7 +1328,7 @@
                             <a href="${link}" target="_blank" class="event-link">
                                 Join Session <i class="fas fa-external-link-alt"></i>
                             </a>
-                            <a href="#" onclick="addToCalendar('${title}', '${day}', '${month}'); return false;" class="event-link" style="margin-left: 10px;">
+                            <a href="#" onclick="addToCalendar('${title}', ${month.split(' ')[1]}, ${new Date(Date.parse(month.split(' ')[0] + ' 1, 2000')).getMonth()}, ${day}); return false;" class="event-link" style="margin-left: 10px;">
                                 Add to calendar <i class="fas fa-calendar-plus"></i>
                             </a>
                         </div>
@@ -1509,10 +1509,9 @@
                             // Add 'Add to calendar' link
                             const addToCalendarLink = document.createElement("a");
                             addToCalendarLink.href = "#";
-                            addToCalendarLink.onclick = function() { addToCalendar(event.title, event.date.getDate(), event.date.toLocaleString('en-US', { month: 'long' })); return false; };
+                            addToCalendarLink.onclick = function() { addToCalendar(event.title, event.date.getFullYear(), event.date.getMonth(), event.date.getDate()); return false; };
                             addToCalendarLink.className = "calendar-event-link";
-                            addToCalendarLink.style.marginTop = "5px";
-                            addToCalendarLink.style.display = "block";
+                            addToCalendarLink.style.marginLeft = "10px";
                             addToCalendarLink.innerHTML = `Add to calendar <i class="fas fa-calendar-plus"></i>`;
                             eventElement.appendChild(addToCalendarLink);
                             
@@ -1616,7 +1615,7 @@
                             <a href="${link}" target="_blank" class="event-link">
                                 Join Session <i class="fas fa-external-link-alt"></i>
                             </a>
-                            <a href="#" onclick="addToCalendar('${event.title}', '${event.date.getDate()}', '${event.date.toLocaleString('en-US', { month: 'long' })}'); return false;" class="event-link" style="margin-left: 10px;">
+                            <a href="#" onclick="addToCalendar('${event.title}', ${event.date.getFullYear()}, ${event.date.getMonth()}, ${event.date.getDate()}); return false;" class="event-link" style="margin-left: 10px;">
                                 Add to calendar <i class="fas fa-calendar-plus"></i>
                             </a>
                         </div>
@@ -1626,20 +1625,11 @@
         }
 
         // Function to generate and download an .ics file for the event
-        function addToCalendar(title, day, month) {
-            const year = new Date().getFullYear();
-            const date = new Date(year, new Date(month + ' 1, ' + year).getMonth(), parseInt(day));
+        function addToCalendar(title, year, month, day) {
+            const date = new Date(year, month, day);
             const startDate = date.toISOString().replace(/-|:|\.\d+/g, '');
             const endDate = new Date(date.getTime() + 60 * 60 * 1000).toISOString().replace(/-|:|\.\d+/g, '');
-            const icsContent = `BEGIN:VCALENDAR
-VERSION:2.0
-BEGIN:VEVENT
-DTSTART:${startDate}
-DTEND:${endDate}
-SUMMARY:${title}
-DESCRIPTION:${title}
-END:VEVENT
-END:VCALENDAR`;
+            const icsContent = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:${startDate}\nDTEND:${endDate}\nSUMMARY:${title}\nDESCRIPTION:${title}\nEND:VEVENT\nEND:VCALENDAR`;
             const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
