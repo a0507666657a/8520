@@ -1510,6 +1510,10 @@
                             addToCalendarLink.onclick = function() { addToCalendar(event.title, event.date.getDate(), event.date.toLocaleString('en-US', { month: 'long' })); return false; };
                             addToCalendarLink.className = "calendar-event-link";
                             addToCalendarLink.style.marginLeft = "10px";
+                            addToCalendarLink.style.padding = "0.25rem 0.5rem";
+                            addToCalendarLink.style.borderRadius = "6px";
+                            addToCalendarLink.style.backgroundColor = "var(--white)";
+                            addToCalendarLink.style.border = "1px solid var(--primary-color)";
                             addToCalendarLink.innerHTML = `Add to calendar <i class="fas fa-calendar-plus"></i>`;
                             eventElement.appendChild(addToCalendarLink);
                             
