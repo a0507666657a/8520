@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Light theme variables */
             --primary-color: #2563eb;
             --primary-dark: #1d4ed8;
             --secondary-color: #0ea5e9;
@@ -27,30 +26,8 @@
             --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
             --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --card-bg: #ffffff;
-            --hover-bg: #f1f5f9;
         }
-
-        [data-theme="dark"] {
-            --primary-color: #3b82f6;
-            --primary-dark: #2563eb;
-            --secondary-color: #0ea5e9;
-            --accent-color: #0284c7;
-            --light-bg: #1e293b;
-            --text-dark: #f1f5f9;
-            --text-light: #94a3b8;
-            --white: #0f172a;
-            --success: #059669;
-            --warning: #d97706;
-            --error: #dc2626;
-            --border-color: #334155;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
-            --card-bg: #1e293b;
-            --hover-bg: #334155;
-        }
-
+        
         * {
             box-sizing: border-box;
             margin: 0;
@@ -464,8 +441,6 @@
         .calendar-day {
             position: relative;
             min-height: 100px;
-            height: 100px;
-            width: 100%;
             border-radius: 8px;
             border: 1px solid var(--border-color);
             padding: 0.75rem;
@@ -555,37 +530,6 @@
             display: none;
             text-align: center;
             padding: 3rem;
-            background: rgba(255, 255, 255, 0.9);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 1000;
-        }
-        
-        .loading-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-        
-        .loading-text {
-            margin-top: 1rem;
-            color: var(--text-dark);
-            font-weight: 500;
-        }
-        
-        .error-message {
-            background-color: #fee2e2;
-            border: 1px solid #ef4444;
-            color: #991b1b;
-            padding: 1rem;
-            border-radius: 8px;
-            margin: 1rem 0;
-            display: none;
         }
         
         .spinner {
@@ -845,7 +789,7 @@
             font-weight: 500;
             transition: all 0.2s ease;
             gap: 0.375rem;
-            padding: 0.25rem 0.5rem;
+            padding: 0.5rem 0.75rem;
             background-color: var(--white);
             border-radius: 6px;
             border: 1px solid var(--primary-color);
@@ -946,6 +890,7 @@
             color: white;
             cursor: pointer;
             padding: 0.5rem;
+            font-size: 1.2rem;
         }
         
         .ai-chat-messages {
@@ -1025,430 +970,6 @@
                 bottom: 1rem;
             }
         }
-
-        .notification {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            padding: 1rem;
-            border-radius: 8px;
-            background-color: var(--white);
-            box-shadow: var(--shadow-lg);
-            z-index: 1000;
-            display: none;
-            animation: slideIn 0.3s ease-out;
-            max-width: 300px;
-        }
-
-        .notification.success {
-            border-left: 4px solid var(--success);
-        }
-
-        .notification.error {
-            border-left: 4px solid var(--error);
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        .notification-content {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .notification-icon {
-            font-size: 1.25rem;
-        }
-
-        .notification-message {
-            flex-grow: 1;
-        }
-
-        .notification-close {
-            background: none;
-            border: none;
-            color: var(--text-light);
-            cursor: pointer;
-            padding: 0.25rem;
-        }
-
-        @media print {
-            body {
-                background: white;
-            }
-            
-            .container {
-                margin: 0;
-                padding: 0;
-                box-shadow: none;
-            }
-            
-            .search-container,
-            .tabs,
-            .ai-assistant,
-            .notification,
-            .loading {
-                display: none !important;
-            }
-            
-            .month-card {
-                break-inside: avoid;
-                page-break-inside: avoid;
-                box-shadow: none;
-                border: 1px solid #ddd;
-                margin-bottom: 1rem;
-            }
-            
-            .month-card.expanded .event-list {
-                display: block !important;
-            }
-            
-            .event-link {
-                display: none !important;
-            }
-            
-            footer {
-                display: none;
-            }
-        }
-
-        .print-button {
-            position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            z-index: 1000;
-            background-color: var(--white);
-            color: var(--text-dark);
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow);
-        }
-
-        .print-button:hover {
-            background-color: var(--light-bg);
-        }
-
-        .share-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.375rem;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            padding: 0.25rem 0.5rem;
-            background-color: var(--white);
-            border-radius: 6px;
-            border: 1px solid var(--primary-color);
-            margin-left: 10px;
-        }
-
-        .share-button:hover {
-            background-color: var(--primary-color);
-            color: var(--white);
-            transform: translateY(-1px);
-        }
-
-        .share-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .share-modal.active {
-            display: flex;
-        }
-
-        .share-modal-content {
-            background-color: var(--white);
-            padding: 2rem;
-            border-radius: 12px;
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-        }
-
-        .share-modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: var(--text-light);
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .share-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .share-option {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .share-option:hover {
-            background-color: var(--light-bg);
-            transform: translateY(-2px);
-        }
-
-        .share-option i {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-        }
-
-        .share-option span {
-            font-size: 0.875rem;
-            color: var(--text-dark);
-        }
-
-        .theme-toggle {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            z-index: 1000;
-            background-color: var(--card-bg);
-            color: var(--text-dark);
-            border: 1px solid var(--border-color);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow);
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.1);
-            background-color: var(--hover-bg);
-        }
-
-        .theme-toggle i {
-            font-size: 1.2rem;
-        }
-
-        .theme-settings {
-            position: fixed;
-            top: 1rem;
-            right: 4rem;
-            z-index: 1000;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1rem;
-            display: none;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .theme-settings.active {
-            display: block;
-        }
-
-        .theme-settings h4 {
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-        }
-
-        .color-options {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.5rem;
-        }
-
-        .color-option {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid var(--border-color);
-            transition: transform 0.2s ease;
-        }
-
-        .color-option:hover {
-            transform: scale(1.1);
-        }
-
-        .color-option.active {
-            border-color: var(--primary-color);
-        }
-
-        .filter-bar {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-group {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background-color: var(--card-bg);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-
-        .filter-group select {
-            background-color: var(--card-bg);
-            color: var(--text-dark);
-            border: 1px solid var(--border-color);
-            padding: 0.5rem;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        .filter-group select:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        .sort-button {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background-color: var(--card-bg);
-            color: var(--text-dark);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .sort-button:hover {
-            background-color: var(--hover-bg);
-        }
-
-        .sort-button.active {
-            background-color: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-
-        .filter-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .filter-tag {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.25rem 0.75rem;
-            background-color: var(--light-bg);
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            color: var(--text-dark);
-        }
-
-        .filter-tag button {
-            background: none;
-            border: none;
-            color: var(--text-light);
-            cursor: pointer;
-            padding: 0;
-            font-size: 0.875rem;
-        }
-
-        .filter-tag button:hover {
-            color: var(--error);
-        }
-
-        .reminder-settings {
-            position: fixed;
-            bottom: 2rem;
-            left: 5rem;
-            z-index: 1000;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1rem;
-            display: none;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .reminder-settings.active {
-            display: block;
-        }
-
-        .reminder-option {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .reminder-option input[type="checkbox"] {
-            width: 1rem;
-            height: 1rem;
-        }
-
-        .reminder-time {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .reminder-time select {
-            background-color: var(--card-bg);
-            color: var(--text-dark);
-            border: 1px solid var(--border-color);
-            padding: 0.25rem;
-            border-radius: 4px;
-        }
-
-        .reminder-button {
-            position: fixed;
-            bottom: 2rem;
-            left: 5rem;
-            z-index: 1000;
-            background-color: var(--card-bg);
-            color: var(--text-dark);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .reminder-button:hover {
-            background-color: var(--hover-bg);
-        }
-
-        .reminder-button i {
-            color: var(--primary-color);
-        }
     </style>
 </head>
 <body>
@@ -1489,10 +1010,7 @@
         </div>
         
         <div class="loading">
-            <div class="loading-content">
-                <div class="spinner"></div>
-                <p class="loading-text">Loading...</p>
-            </div>
+            <div class="spinner"></div>
         </div>
         
         <div id="output"></div>
@@ -1539,123 +1057,9 @@
             </div>
         </div>
         
-        <div class="notification" id="notification">
-            <div class="notification-content">
-                <i class="fas notification-icon"></i>
-                <div class="notification-message"></div>
-                <button class="notification-close">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-        </div>
-        
         <footer>
             <p>© 2025 Nursing Education Department. All rights reserved.</p>
         </footer>
-    </div>
-
-    <button class="print-button" onclick="window.print()">
-        <i class="fas fa-print"></i> Print Calendar
-    </button>
-
-    <div class="share-modal" id="shareModal">
-        <div class="share-modal-content">
-            <button class="share-modal-close" onclick="closeShareModal()">
-                <i class="fas fa-times"></i>
-            </button>
-            <h3>Share Event</h3>
-            <p id="shareEventTitle"></p>
-            <div class="share-options">
-                <div class="share-option" onclick="shareEvent('email')">
-                    <i class="fas fa-envelope"></i>
-                    <span>Email</span>
-                </div>
-                <div class="share-option" onclick="shareEvent('whatsapp')">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>WhatsApp</span>
-                </div>
-                <div class="share-option" onclick="shareEvent('teams')">
-                    <i class="fas fa-users"></i>
-                    <span>Teams</span>
-                </div>
-                <div class="share-option" onclick="shareEvent('copy')">
-                    <i class="fas fa-copy"></i>
-                    <span>Copy Link</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <button class="theme-toggle" id="themeToggle">
-        <i class="fas fa-moon"></i>
-    </button>
-
-    <div class="theme-settings" id="themeSettings">
-        <h4>Theme Settings</h4>
-        <div class="color-options">
-            <div class="color-option" style="background-color: #2563eb;" data-color="blue"></div>
-            <div class="color-option" style="background-color: #059669;" data-color="green"></div>
-            <div class="color-option" style="background-color: #7c3aed;" data-color="purple"></div>
-            <div class="color-option" style="background-color: #dc2626;" data-color="red"></div>
-            <div class="color-option" style="background-color: #d97706;" data-color="orange"></div>
-            <div class="color-option" style="background-color: #0891b2;" data-color="cyan"></div>
-            <div class="color-option" style="background-color: #be185d;" data-color="pink"></div>
-            <div class="color-option" style="background-color: #4b5563;" data-color="gray"></div>
-        </div>
-    </div>
-
-    <div class="filter-bar">
-        <div class="filter-group">
-            <label for="eventType">Event Type:</label>
-            <select id="eventType">
-                <option value="all">All Events</option>
-                <option value="journal">Journal Club</option>
-                <option value="education">Education</option>
-            </select>
-        </div>
-        <div class="filter-group">
-            <label for="monthFilter">Month:</label>
-            <select id="monthFilter">
-                <option value="all">All Months</option>
-                <option value="current">Current Month</option>
-                <option value="next">Next Month</option>
-            </select>
-        </div>
-        <div class="filter-group">
-            <label for="sortBy">Sort By:</label>
-            <select id="sortBy">
-                <option value="date">Date</option>
-                <option value="title">Title</option>
-                <option value="type">Type</option>
-            </select>
-        </div>
-        <button class="sort-button" id="sortDirection">
-            <i class="fas fa-sort-amount-down"></i>
-            Descending
-        </button>
-    </div>
-    <div class="filter-tags" id="filterTags"></div>
-
-    <button class="reminder-button" id="reminderButton">
-        <i class="fas fa-bell"></i>
-        Reminder Settings
-    </button>
-
-    <div class="reminder-settings" id="reminderSettings">
-        <h4>Reminder Settings</h4>
-        <div class="reminder-option">
-            <input type="checkbox" id="enableReminders">
-            <label for="enableReminders">Enable Event Reminders</label>
-        </div>
-        <div class="reminder-time">
-            <label for="reminderTime">Remind me:</label>
-            <select id="reminderTime">
-                <option value="15">15 minutes before</option>
-                <option value="30">30 minutes before</option>
-                <option value="60">1 hour before</option>
-                <option value="1440">1 day before</option>
-            </select>
-        </div>
     </div>
 
     <script>
@@ -1781,7 +1185,7 @@
         }
 
         // Current displayed month in calendar
-        let currentMonth = new Date(); // Start with the current month
+        let currentMonth = new Date(2025, 0); // Start with January 2025
 
         // Search functionality with debounce
         let searchTimeout;
@@ -1922,11 +1326,8 @@
                             <a href="${link}" target="_blank" class="event-link">
                                 Join Session <i class="fas fa-external-link-alt"></i>
                             </a>
-                            <a href="#" onclick="addToCalendar('${title}', ${month.split(' ')[1]}, ${new Date(Date.parse(month.split(' ')[0] + ' 1, 2000')).getMonth()}, ${day}); return false;" class="event-link" style="margin-left: 10px;">
+                            <a href="#" onclick="addToCalendar('${title}', '${day}', '${month}'); return false;" class="event-link" style="margin-left: 10px;">
                                 Add to calendar <i class="fas fa-calendar-plus"></i>
-                            </a>
-                            <a href="#" onclick="openShareModal('${title}'); return false;" class="share-button">
-                                <i class="fas fa-share-alt"></i> Share
                             </a>
                         </div>
                     </li>
@@ -2106,7 +1507,7 @@
                             // Add 'Add to calendar' link
                             const addToCalendarLink = document.createElement("a");
                             addToCalendarLink.href = "#";
-                            addToCalendarLink.onclick = function() { addToCalendar(event.title, event.date.getFullYear(), event.date.getMonth(), event.date.getDate()); return false; };
+                            addToCalendarLink.onclick = function() { addToCalendar(event.title, event.date.getDate(), event.date.toLocaleString('en-US', { month: 'long' })); return false; };
                             addToCalendarLink.className = "calendar-event-link";
                             addToCalendarLink.style.marginLeft = "10px";
                             addToCalendarLink.innerHTML = `Add to calendar <i class="fas fa-calendar-plus"></i>`;
@@ -2212,7 +1613,7 @@
                             <a href="${link}" target="_blank" class="event-link">
                                 Join Session <i class="fas fa-external-link-alt"></i>
                             </a>
-                            <a href="#" onclick="addToCalendar('${event.title}', ${event.date.getFullYear()}, ${event.date.getMonth()}, ${event.date.getDate()}); return false;" class="event-link" style="margin-left: 10px;">
+                            <a href="#" onclick="addToCalendar('${event.title}', '${event.date.getDate()}', '${event.date.toLocaleString('en-US', { month: 'long' })}'); return false;" class="event-link" style="margin-left: 10px;">
                                 Add to calendar <i class="fas fa-calendar-plus"></i>
                             </a>
                         </div>
@@ -2221,55 +1622,28 @@
             }).join('');
         }
 
-        // Function to show notification
-        function showNotification(message, type = 'success') {
-            const notification = document.getElementById('notification');
-            const icon = notification.querySelector('.notification-icon');
-            const messageEl = notification.querySelector('.notification-message');
-            
-            // Set icon based on type
-            icon.className = `fas notification-icon ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}`;
-            
-            // Set message
-            messageEl.textContent = message;
-            
-            // Set type
-            notification.className = `notification ${type}`;
-            
-            // Show notification
-            notification.style.display = 'block';
-            
-            // Auto hide after 5 seconds
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 5000);
-        }
-
-        // Add event listener for notification close button
-        document.querySelector('.notification-close').addEventListener('click', () => {
-            document.getElementById('notification').style.display = 'none';
-        });
-
-        // Update addToCalendar function to show notification
-        function addToCalendar(title, year, month, day) {
-            try {
-                const date = new Date(year, month, day);
-                const startDate = date.toISOString().replace(/-|:|\.\d+/g, '');
-                const endDate = new Date(date.getTime() + 60 * 60 * 1000).toISOString().replace(/-|:|\.\d+/g, '');
-                const icsContent = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:${startDate}\nDTEND:${endDate}\nSUMMARY:${title}\nDESCRIPTION:${title}\nEND:VEVENT\nEND:VCALENDAR`;
-                const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = `${title}.ics`;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                
-                showNotification(`Added "${title}" to your calendar`, 'success');
-            } catch (error) {
-                console.error('Error adding to calendar:', error);
-                showNotification('Failed to add event to calendar', 'error');
-            }
+        // Function to generate and download an .ics file for the event
+        function addToCalendar(title, day, month) {
+            const year = new Date().getFullYear();
+            const date = new Date(year, new Date(month + ' 1, ' + year).getMonth(), parseInt(day));
+            const startDate = date.toISOString().replace(/-|:|\.\d+/g, '');
+            const endDate = new Date(date.getTime() + 60 * 60 * 1000).toISOString().replace(/-|:|\.\d+/g, '');
+            const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+DTSTART:${startDate}
+DTEND:${endDate}
+SUMMARY:${title}
+DESCRIPTION:${title}
+END:VEVENT
+END:VCALENDAR`;
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `${title}.ics`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
         // Initialize the page
@@ -2581,341 +1955,6 @@
                 }
             });
         });
-
-        // Add share functionality
-        function shareEvent(type) {
-            const eventTitle = document.getElementById('shareEventTitle').textContent;
-            const eventUrl = window.location.href;
-            const shareText = `Check out this event: ${eventTitle}`;
-            
-            switch(type) {
-                case 'email':
-                    window.location.href = `mailto:?subject=${encodeURIComponent(eventTitle)}&body=${encodeURIComponent(shareText + '\n\n' + eventUrl)}`;
-                    break;
-                case 'whatsapp':
-                    window.open(`https://wa.me/?text=${encodeURIComponent(shareText + '\n\n' + eventUrl)}`);
-                    break;
-                case 'teams':
-                    window.open(`https://teams.microsoft.com/l/chat/0/0?users=&message=${encodeURIComponent(shareText + '\n\n' + eventUrl)}`);
-                    break;
-                case 'copy':
-                    navigator.clipboard.writeText(eventUrl).then(() => {
-                        showNotification('Link copied to clipboard', 'success');
-                    }).catch(() => {
-                        showNotification('Failed to copy link', 'error');
-                    });
-                    break;
-            }
-            
-            closeShareModal();
-        }
-
-        function openShareModal(eventTitle) {
-            const modal = document.getElementById('shareModal');
-            document.getElementById('shareEventTitle').textContent = eventTitle;
-            modal.classList.add('active');
-        }
-
-        function closeShareModal() {
-            document.getElementById('shareModal').classList.remove('active');
-        }
-
-        // Theme functionality
-        const themeToggle = document.getElementById('themeToggle');
-        const themeSettings = document.getElementById('themeSettings');
-        const colorOptions = document.querySelectorAll('.color-option');
-
-        // Check for saved theme preference
-        const savedTheme = localStorage.getItem('theme');
-        const savedColor = localStorage.getItem('themeColor');
-
-        if (savedTheme) {
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-        }
-
-        if (savedColor) {
-            document.documentElement.style.setProperty('--primary-color', savedColor);
-            colorOptions.forEach(option => {
-                if (option.dataset.color === savedColor) {
-                    option.classList.add('active');
-                }
-            });
-        }
-
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            
-            themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-        });
-
-        themeToggle.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-            themeSettings.classList.toggle('active');
-        });
-
-        colorOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                const color = option.style.backgroundColor;
-                document.documentElement.style.setProperty('--primary-color', color);
-                localStorage.setItem('themeColor', color);
-                
-                colorOptions.forEach(opt => opt.classList.remove('active'));
-                option.classList.add('active');
-            });
-        });
-
-        // Close theme settings when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!themeSettings.contains(e.target) && !themeToggle.contains(e.target)) {
-                themeSettings.classList.remove('active');
-            }
-        });
-
-        // Filter and sort functionality
-        const eventTypeFilter = document.getElementById('eventType');
-        const monthFilter = document.getElementById('monthFilter');
-        const sortBy = document.getElementById('sortBy');
-        const sortDirection = document.getElementById('sortDirection');
-        const filterTags = document.getElementById('filterTags');
-
-        let currentFilters = {
-            type: 'all',
-            month: 'all',
-            sortBy: 'date',
-            direction: 'desc'
-        };
-
-        function updateFilters() {
-            currentFilters.type = eventTypeFilter.value;
-            currentFilters.month = monthFilter.value;
-            currentFilters.sortBy = sortBy.value;
-            
-            // Update filter tags
-            filterTags.innerHTML = '';
-            
-            if (currentFilters.type !== 'all') {
-                addFilterTag('Type', currentFilters.type, () => {
-                    eventTypeFilter.value = 'all';
-                    updateFilters();
-                });
-            }
-            
-            if (currentFilters.month !== 'all') {
-                addFilterTag('Month', currentFilters.month, () => {
-                    monthFilter.value = 'all';
-                    updateFilters();
-                });
-            }
-            
-            // Apply filters and sort
-            filterAndSortEvents();
-        }
-
-        function addFilterTag(label, value, onRemove) {
-            const tag = document.createElement('div');
-            tag.className = 'filter-tag';
-            tag.innerHTML = `
-                ${label}: ${value}
-                <button onclick="this.parentElement.remove(); onRemove();">
-                    <i class="fas fa-times"></i>
-                </button>
-            `;
-            filterTags.appendChild(tag);
-        }
-
-        function filterAndSortEvents() {
-            const filteredEvents = [];
-            
-            // Get current date for filtering
-            const today = new Date();
-            const currentMonth = today.getMonth();
-            const currentYear = today.getFullYear();
-            
-            // Filter events
-            for (const month in events) {
-                const [monthName, year] = month.split(' ');
-                const monthIndex = new Date(`${monthName} 1, ${year}`).getMonth();
-                
-                // Apply month filter
-                if (currentFilters.month === 'current' && 
-                    (monthIndex !== currentMonth || parseInt(year) !== currentYear)) {
-                    continue;
-                }
-                
-                if (currentFilters.month === 'next') {
-                    const nextMonth = new Date(currentYear, currentMonth + 1);
-                    if (monthIndex !== nextMonth.getMonth() || parseInt(year) !== nextMonth.getFullYear()) {
-                        continue;
-                    }
-                }
-                
-                events[month].forEach(event => {
-                    // Apply type filter
-                    if (currentFilters.type === 'journal' && !event.includes('Journal Club')) {
-                        return;
-                    }
-                    if (currentFilters.type === 'education' && event.includes('Journal Club')) {
-                        return;
-                    }
-                    
-                    filteredEvents.push({ month, event });
-                });
-            }
-            
-            // Sort events
-            filteredEvents.sort((a, b) => {
-                let comparison = 0;
-                
-                switch (currentFilters.sortBy) {
-                    case 'date':
-                        const dateA = new Date(a.month.split(' ')[0] + ' 1, ' + a.month.split(' ')[1]);
-                        const dateB = new Date(b.month.split(' ')[0] + ' 1, ' + b.month.split(' ')[1]);
-                        comparison = dateA - dateB;
-                        break;
-                    case 'title':
-                        comparison = a.event.localeCompare(b.event);
-                        break;
-                    case 'type':
-                        const typeA = a.event.includes('Journal Club') ? 'Journal Club' : 'Education';
-                        const typeB = b.event.includes('Journal Club') ? 'Journal Club' : 'Education';
-                        comparison = typeA.localeCompare(typeB);
-                        break;
-                }
-                
-                return currentFilters.direction === 'desc' ? -comparison : comparison;
-            });
-            
-            // Update display
-            displayFilteredEvents(filteredEvents);
-        }
-
-        function displayFilteredEvents(filteredEvents) {
-            const output = document.getElementById('output');
-            output.innerHTML = '';
-            
-            // Group events by month
-            const eventsByMonth = {};
-            filteredEvents.forEach(({ month, event }) => {
-                if (!eventsByMonth[month]) {
-                    eventsByMonth[month] = [];
-                }
-                eventsByMonth[month].push(event);
-            });
-            
-            // Create month cards
-            for (const month in eventsByMonth) {
-                output.innerHTML += createMonthCard(month, eventsByMonth[month]);
-            }
-        }
-
-        // Event listeners for filters
-        eventTypeFilter.addEventListener('change', updateFilters);
-        monthFilter.addEventListener('change', updateFilters);
-        sortBy.addEventListener('change', updateFilters);
-        sortDirection.addEventListener('click', () => {
-            currentFilters.direction = currentFilters.direction === 'desc' ? 'asc' : 'desc';
-            sortDirection.innerHTML = `
-                <i class="fas fa-sort-amount-${currentFilters.direction === 'desc' ? 'down' : 'up'}"></i>
-                ${currentFilters.direction === 'desc' ? 'Descending' : 'Ascending'}
-            `;
-            updateFilters();
-        });
-
-        // Reminder functionality
-        const reminderButton = document.getElementById('reminderButton');
-        const reminderSettings = document.getElementById('reminderSettings');
-        const enableReminders = document.getElementById('enableReminders');
-        const reminderTime = document.getElementById('reminderTime');
-
-        // Check for saved reminder settings
-        const savedReminders = localStorage.getItem('reminderSettings');
-        if (savedReminders) {
-            const settings = JSON.parse(savedReminders);
-            enableReminders.checked = settings.enabled;
-            reminderTime.value = settings.time;
-        }
-
-        reminderButton.addEventListener('click', () => {
-            reminderSettings.classList.toggle('active');
-        });
-
-        // Save reminder settings
-        function saveReminderSettings() {
-            const settings = {
-                enabled: enableReminders.checked,
-                time: reminderTime.value
-            };
-            localStorage.setItem('reminderSettings', JSON.stringify(settings));
-        }
-
-        enableReminders.addEventListener('change', saveReminderSettings);
-        reminderTime.addEventListener('change', saveReminderSettings);
-
-        // Check for upcoming events and set reminders
-        function checkUpcomingEvents() {
-            if (!enableReminders.checked) return;
-
-            const today = new Date();
-            const reminderMinutes = parseInt(reminderTime.value);
-            
-            for (const month in events) {
-                const [monthName, year] = month.split(' ');
-                const monthIndex = new Date(`${monthName} 1, ${year}`).getMonth();
-                
-                events[month].forEach(event => {
-                    let day;
-                    if (event.startsWith('-')) {
-                        day = 1;
-                    } else if (event.includes(':')) {
-                        day = parseInt(event.split(':')[0]);
-                    } else {
-                        day = parseInt(event.split(' - ')[0]);
-                    }
-                    
-                    const eventDate = new Date(parseInt(year), monthIndex, day);
-                    const timeUntilEvent = eventDate - today;
-                    const minutesUntilEvent = timeUntilEvent / (1000 * 60);
-                    
-                    // Set reminder if event is within reminder time
-                    if (minutesUntilEvent > 0 && minutesUntilEvent <= reminderMinutes) {
-                        scheduleReminder(event, eventDate);
-                    }
-                });
-            }
-        }
-
-        // Schedule reminder notification
-        function scheduleReminder(event, eventDate) {
-            if (!("Notification" in window)) {
-                console.log("This browser does not support notifications");
-                return;
-            }
-
-            Notification.requestPermission().then(permission => {
-                if (permission === "granted") {
-                    const reminderTime = new Date(eventDate.getTime() - (parseInt(reminderTime.value) * 60 * 1000));
-                    const timeUntilReminder = reminderTime - new Date();
-                    
-                    if (timeUntilReminder > 0) {
-                        setTimeout(() => {
-                            new Notification("Upcoming Event", {
-                                body: `${event} is starting in ${reminderTime.value} minutes`,
-                                icon: "/path/to/icon.png" // Add your icon path here
-                            });
-                        }, timeUntilReminder);
-                    }
-                }
-            });
-        }
-
-        // Check for upcoming events every minute
-        setInterval(checkUpcomingEvents, 60000);
-        checkUpcomingEvents(); // Initial check
     </script>
 </body>
 </html>
