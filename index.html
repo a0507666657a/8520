@@ -441,6 +441,8 @@
         .calendar-day {
             position: relative;
             min-height: 100px;
+            height: 100px;
+            width: 100%;
             border-radius: 8px;
             border: 1px solid var(--border-color);
             padding: 0.75rem;
@@ -1509,11 +1511,8 @@
                             addToCalendarLink.href = "#";
                             addToCalendarLink.onclick = function() { addToCalendar(event.title, event.date.getDate(), event.date.toLocaleString('en-US', { month: 'long' })); return false; };
                             addToCalendarLink.className = "calendar-event-link";
-                            addToCalendarLink.style.marginLeft = "10px";
-                            addToCalendarLink.style.padding = "0.25rem 0.5rem";
-                            addToCalendarLink.style.borderRadius = "6px";
-                            addToCalendarLink.style.backgroundColor = "var(--white)";
-                            addToCalendarLink.style.border = "1px solid var(--primary-color)";
+                            addToCalendarLink.style.marginTop = "5px";
+                            addToCalendarLink.style.display = "block";
                             addToCalendarLink.innerHTML = `Add to calendar <i class="fas fa-calendar-plus"></i>`;
                             eventElement.appendChild(addToCalendarLink);
                             
